@@ -11,22 +11,30 @@ let imageGenerated =
 let imageContainer = 
     document.getElementById('images-visible');
 
-async function fetchImages(category) {
-    try {
-        let response = 
-        await fetch(`818080b8c986a5800ad523f3dbb858086c9209346b95ca7a67cdd5024d7eb88a`);
-        if (!response.ok) {
-            throw new Error('Unable to fetch the data');
-        }
-        imageContainerText.innerText = 
-        "Below is your generated Image:";
-        imageContainer.style.display = "block";
-        imageGenerated.src = response.url;
-        console.log(response.url);
-    }
-    catch (error) {
-        console.log(error);
-    }
+function fetchImages(category) {
+const axios = require('axios');
+
+const apiUrl = 'https://api.picogen.io/v1/job/generate';
+const apiToken = '818080b8c986a5800ad523f3dbb858086c9209346b95ca7a67cdd5024d7eb88a';
+
+const data = {
+  prompt: category,
+  ratio: "16:9"
+};
+
+axios.post(apiUrl, data, {
+  headers: {
+    'Content-Type': 'application/json',
+    'API-Token': apiToken
+  }
+})
+.then(response => {
+  console.log(response.data);
+})
+.catch(error => {
+  console.error('Error:', error);
+});
+
 }
 
 generateImageForm.addEventListener('submit', (e) => {
