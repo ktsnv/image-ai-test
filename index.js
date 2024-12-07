@@ -14,7 +14,7 @@ let imageContainer =
 async function fetchImages(category) {
     try {
         let response = 
-        await fetch(`use a API`);
+        await fetch(`818080b8c986a5800ad523f3dbb858086c9209346b95ca7a67cdd5024d7eb88a`);
         if (!response.ok) {
             throw new Error('Unable to fetch the data');
         }
